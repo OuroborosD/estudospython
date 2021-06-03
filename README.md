@@ -1,2 +1,2 @@
 # estudospython
-radom code that i make in python.
+random code that i make in python.
