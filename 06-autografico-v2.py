@@ -66,12 +66,11 @@ while controle != 0:
         #6° vai organizar as classes em cada grupo de valores, o antes e depois
         ptl.xticks([r  + barWidth for r in range(len(t2))], c1)
         ptl.legend()
-        
         referencia = len(lista)
-        for plus in range(3):
-            darnome = nome_imagem(controle,referencia,plus)
-            ptl.savefig(f'{path}{darnome}.png',format='png')
-
+        darnome = nome_imagem(controle,referencia,int(l/3))#o L é do loop for, que vai entrar na função e puxar a categoria do rank
+        print(darnome)
+        ptl.savefig(f'{path}{darnome}.png',format='png')
+       
     incremento += int(len(lista)/4)#soma para adicionar o valor da numeração do valor de baixo.
     controle -= len(lista)/2#controle, para finalizar o while
 
