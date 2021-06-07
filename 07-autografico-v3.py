@@ -10,7 +10,7 @@ Script para gerar pegar dados,e  gerar automaticamente na tabela-V2
 import openpyxl as sheet
 import matplotlib.pyplot as ptl
 import numpy as np
-from funcoes_aux import nome_imagem
+from funcoes_aux import nome_imagem_v2
 
 letras = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 lista = []
@@ -20,20 +20,23 @@ nome_planilha = dados.sheetnames
 planilha1 = dados['Plan1']#nome da planilha que pega os dados.
 path = "C:\\Users\\snr\\OneDrive\\Documentos\\escritor\\site\\STATIC\\IMG\\"
 
-for i in range(5,11,5):#esse loop é o que seleciona as letras. pula de 5 em 5.
-
-    for j in range(0,10):#
+for i in range(5,16,5):#esse loop é o que seleciona as letras. pula de 5 em 5.
+    print(f'letra {letras[i]}')
+    for j in range(0,10):
         lista.append(planilha1[f'{letras[i]}{j+16}'].value)
         
         if len(rank) < 10:#entra se não tiver preenchido os ranks
             rank.append(planilha1[f'B{j+2}'].value)
             
-if len(lista) > 10:
-     for i in range(5,11,5):
+if len(lista) > 20:
+     for i in range(5,16,5):
         for j in range(0,10):
             lista.append(planilha1[f'{letras[i]}{j+32}'].value)
 
+
+print(lista)
 controle = len(lista)#controle ddo loop while
+print('tamano da lista é',controle)
 incremento = 0 #para pegar outros valores da tablema
 
 while controle != 0:
@@ -42,13 +45,14 @@ while controle != 0:
 
     for k in range(10):
         dayne.append(lista[k+incremento])
-        real.append(lista[k+(20+incremento)])
+        real.append(lista[k+(30+incremento)])#onde começa ordem da familia real.
     
     for l in range(0,9,3):
         t1 = dayne[l:l+3]
         t2 = real[l:l+3]
         c1 = rank[l:l+3]
-        print(f'valor de l é:{l}  no {t1}')
+        print(f'valor de l é:{l}  dayne {t1}')
+        print(f'valor de l é:{l}  real  {t2}')
         barWidth = 0.25#largura da barra
         ptl.figure(figsize=(10,7))#aumentado o grafico
 
@@ -68,12 +72,17 @@ while controle != 0:
         ptl.rc('ytick', labelsize=20)#tamanho das informações no eixo Y 
         ptl.rc('xtick', labelsize=14)
         referencia = len(lista)
-        darnome = nome_imagem(controle,referencia,int(l/3))#o L é do loop for, que vai entrar na função e puxar a categoria do rank
+        darnome = nome_imagem_v2(int(l/3),incremento)#o L é do loop for, que vai entrar na função e puxar a categoria do rank
         print(darnome)
         ptl.savefig(f'{path}{darnome}.png',format='png')
        
-    incremento += int(len(lista)/4)#soma para adicionar o valor da numeração do valor de baixo.
-    controle -= len(lista)/2#controle, para finalizar o while
+    incremento += 10
+    # incremento += int(len(lista)/4)#soma para adicionar o valor da numeração do valor de baixo.
+    controle -= len(lista)/3#controle, para finalizar o while
+
+    if controle == 0:
+        r3 = [x + barWidth for x in r2]
+
 
 
 
