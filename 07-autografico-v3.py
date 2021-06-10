@@ -80,8 +80,7 @@ while controle != 0:
     # incremento += int(len(lista)/4)#soma para adicionar o valor da numeração do valor de baixo.
     controle -= len(lista)/3#controle, para finalizar o while
 
-    if controle == 0:
-        r3 = [x + barWidth for x in r2]
+
 
 
 
