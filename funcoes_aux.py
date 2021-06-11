@@ -1,3 +1,7 @@
+import numpy as np
+import matplotlib.pyplot as ptl
+import random as r
+
 def nome_imagem(controle,referencia,plus):#recebe os valores de controle é incremento.
     nomes = ['inicio','medio','avancado']
     retorno = ''
@@ -31,7 +35,7 @@ def dividir_lista(num,lista=[],inc = 0):
     if inc > 0 or num > 1:
         #print('entrou aqui')
         if inc != 0:
-            for i in range(int(((num+3)-1)*10),(num+3)*10):#para sempre pegar 10 listas
+            for i in range(int(((num+4)-1)*10),(num+4)*10):#para sempre pegar 10 listas
                     var.append(lista[i])
                     #print(f'{i}  :  estou no inc segundo')
 
@@ -47,6 +51,42 @@ def dividir_lista(num,lista=[],inc = 0):
             #print('estou no primeiro ---------------')
             var.append(lista[i])   
         return var
+
+def quantidade_de_barras(barra,tamanho, qtd):
+    #barra, éa referencia do tamanho que vai ter.
+    #tamanho é a largura da barra. barwidth
+    #qtd, numeros de barras
+        barWidth = tamanho# chamei novamente para poder diminuit o tamanho
+        lista = []
+        r1 = np.arange(len(barra))#referencia
+        lista.append(r1)
+        for i in range(qtd):
+            lista.append([x + barWidth for x in lista[i]])
+        return lista
+
+
+
+def barras_grafico(lista,grafico,barWidth,cor,qtd):
+    #lista, o espaço entre as barras.
+    #grafico, a lista com os dados
+    # qtd, qunatos graficos tem
+    # barwidth, lagura da barra.
+
+    frases = ['começo','5 anos de exilio','depois, portoes de terã','Encontro no Abismo de Mael']
+    lis= lista[qtd]
+    gra = grafico[qtd]
+    c = cor[qtd]
+    fra =  frases[qtd]
+    #bar = barWidth
+    return ptl.bar(lis,gra , color = c ,width=barWidth, label = fra)
+
+
+def cor(qtd):#funçao que pega a for autameticamente, dentro da lista.
+    cor = ['#AECAF8','#AEF8D6','#B5EAF0','#F99DA5','#626DD9','#6A3AA6','#696273','#00A886','#9BD8DE','#62A6D9','#A83500']
+    cor_aux = []#salvar as cores
+    for i in range(0,qtd):
+        cor_aux.append(cor[r.randint(0,len(cor))])
+    return cor_aux
 ##################################TESTES###############################################
 '''
 #oi =nome_imagem_v3(0,30)
@@ -59,4 +99,11 @@ print(index)
 #print(f'{t1}\n{t2}\n{t3}\n')
 t1 = dividir_lista(2,aspas, 1)
 print(t1)
+
+aspas = ["A","B","C"]
+teste_barra = tamanho_barra(aspas,0.24,6)
+print(teste_barra[7])
+
+aspas = ["A","B","C"]
+barras_grafico(1,aspas,3,2)
 '''
