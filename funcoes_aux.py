@@ -35,7 +35,7 @@ def dividir_lista(num,lista=[],inc = 0):
     if inc > 0 or num > 1:
         #print('entrou aqui')
         if inc != 0:
-            for i in range(int(((num+4)-1)*10),(num+4)*10):#para sempre pegar 10 listas
+            for i in range(int(((num+5)-1)*10),(num+5)*10):#para sempre pegar 10 listas
                     var.append(lista[i])
                     #print(f'{i}  :  estou no inc segundo')
 
@@ -72,7 +72,7 @@ def barras_grafico(lista,grafico,barWidth,cor,qtd):
     # qtd, qunatos graficos tem
     # barwidth, lagura da barra.
 
-    frases = ['começo','5 anos de exilio','depois, portoes de terã','Encontro no Abismo de Mael']
+    frases = ['começo','5 anos de exilio','depois, portoes de terã','Encontro no Abismo de Mael','nova região','batalha pelas ruinas de malek, contra as 3 familias. ano 775']
     lis= lista[qtd]
     gra = grafico[qtd]
     c = cor[qtd]
@@ -82,11 +82,22 @@ def barras_grafico(lista,grafico,barWidth,cor,qtd):
 
 
 def cor(qtd):#funçao que pega a for autameticamente, dentro da lista.
-    cor = ['#AECAF8','#AEF8D6','#B5EAF0','#F99DA5','#626DD9','#6A3AA6','#696273','#00A886','#9BD8DE','#62A6D9','#A83500']
+    cor = ['#AECAF8','#1B751D','#AEF8D6','#1B5D75','#B5EAF0','#F99DA5','#BA9BDE','#626DD9','#6A3AA6','#696273','#E04E40','#62D9B8','#00A886','#9BD8DE','#62A6D9','#A83500'
+    ,'#2CA82E']
     cor_aux = []#salvar as cores
     for i in range(0,qtd):
         cor_aux.append(cor[r.randint(0,len(cor))])
     return cor_aux
+
+
+def auto_label(lista):#https://www.youtube.com/watch?v=fD0MPHGCLMo
+    for i in lista:
+        h = i.get_height()
+        ptl.annotate('{}'.format(h),
+        xy = (i.get_x() + i.get_width()/2,h),
+        xytext = (0,3),
+        textcoords = 'offset points',
+        ha = 'center' )
 ##################################TESTES###############################################
 '''
 #oi =nome_imagem_v3(0,30)
