@@ -1,7 +1,9 @@
 #TODO cria v2 identificar numeros repetidos, e quantidade de caracteres.
 
 def verifica_repetido(valor):
-    """verifica se só tem numeros repetidos no cpf
+    """verifica se só tem numeros repetidos no cpf.
+       modifiquei para uma igualdade, entre os valores multiplicados
+       pois  pode dar um falso negativo. como o exemplo:
 
     Args:
         valor string: os numeros do cpf
@@ -13,6 +15,7 @@ def verifica_repetido(valor):
     resultado = 0
     for i in range(len(numero)):
         resultado += int(numero[i])
+        print(resultado)
     if resultado % len(numero) != 0:
         return True
     else:
@@ -84,13 +87,7 @@ def valida_cpf_v2(cpf):
 
 
 
-a1 = valida_cpf_v2('06159198394')
-print(a1)
 
-a2 = valida_cpf_v2('111111111112')
-print(a2['mensagem'])
-
-print('\n\n')
-a3 = verifica_repetido('06159198394')
+a3 = verifica_repetido('23569741052')
 a4 = verifica_repetido('11111111111')
-print(a3,"\n",a4)
+print(a4,"\n")
