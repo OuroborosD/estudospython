@@ -1,22 +1,26 @@
 #TODO cria v2 identificar numeros repetidos, e quantidade de caracteres.
 
-def verifica_repetido(valor):
+def verifica_repetido(valor,resultado = 0):
     """verifica se só tem numeros repetidos no cpf.
        modifiquei para uma igualdade, entre os valores multiplicados
+       de  valor X ele mesmo e o resultado
        pois  pode dar um falso negativo. como o exemplo:
-
+      o valor da 55, e 55 é divisivel por 11 com resto 0, ai dava erro.
+      
+     valor = 55 % 11 == 0  >> TRUE
     Args:
         valor string: os numeros do cpf
+        resultado int: inicializa o resultado.
 
     Returns:
         bollean: verdedeiro ou falso dependendo se só tiver numeros repetidos
     """
-    numero = valor
-    resultado = 0
-    for i in range(len(numero)):
-        resultado += int(numero[i])
-        print(resultado)
-    if resultado % len(numero) != 0:
+    
+    
+    for i in range(len(valor)):
+        resultado += int(valor[i])
+    
+    if resultado != (len(valor)*int(valor[0])):
         return True
     else:
         return False
@@ -58,12 +62,12 @@ def valida_cpf_v1(cpf):
 
 
 def valida_cpf_v2(cpf):
-    verifica_cpf,multiplicador,controle,digitos_verificadores, = cpf,10,0,[],
-    mensagens = ['quantidade de digitos invalida','cpf invalido','todos os numeros não podem ser iguais']
+    verifica_cpf,multiplicador,controle,digitos_verificadores, = cpf, 10, 0, []
+    mensagens = ['quantidade de digitos invalida','cpf invalido','todos os numeros não podem ser iguais','valido']
     retorno = {'valido':False, 'mensagem':mensagens[0]}#
     numeros_repetidos = verifica_repetido(verifica_cpf)
-    print(f'resultado {numeros_repetidos}')
-    if len(cpf) == 11   :
+
+    if len(cpf) == 11 and numeros_repetidos == True  :
         while controle  != 2:
             valor = 0 # valor do incremento.
             for i in range((9+controle)):
@@ -75,19 +79,27 @@ def valida_cpf_v2(cpf):
             multiplicador += 1 #incrementa para pegar o primeiro digito verificador na multiplicação.
             digitos_verificadores.append(resultado)
 
-        if int(cpf[-2]) == digitos_verificadores[0] and int(cpf[-1]) == digitos_verificadores[1]:#foi transformado os para interiros
-            return True                                          #pois estava dando erro comparando como string                   
+        if int(cpf[-2]) == digitos_verificadores[0] and int(cpf[-1]) == digitos_verificadores[1]:#foi transformado o cpf para interiro
+                                                                                                 #pois estava dando erro comparando como string     
+                retorno['mensagem'] = mensagens[3]
+                retorno['valido'] = True
+                return retorno
         else:
-            return False
-    
-    return retorno
+            retorno['mensagem'] = mensagens[1]
+            return retorno
+    elif numeros_repetidos:#caso não seja numero repetido entra aqui.
+        
+        return retorno
+    else:
+        retorno['mensagem'] = mensagens[2]
+        return retorno
 
 
 
 
 
 
-
-a3 = verifica_repetido('23569741052')
-a4 = verifica_repetido('11111111111')
-print(a4,"\n")
+#23569741052 validos
+#a3 = verifica_repetido('23569741052')
+a4 = valida_cpf_v2('23569741052')
+print(a4)
