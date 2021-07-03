@@ -62,6 +62,18 @@ def valida_cpf_v1(cpf):
 
 
 def valida_cpf_v2(cpf):
+    """valida cpf, consegue verificar os digitos, e se são numeros repetido
+
+
+    Args:
+        cpf (string): o valor do cpf
+
+    Returns:
+        dict: {'status': bolean, 'mensagem':'o por que do status'}
+              retorna o booleano True ou False como o status, 
+              e uma mensagem mostrando o por que o status.
+
+    """
     verifica_cpf,multiplicador,controle,digitos_verificadores, = cpf, 10, 0, []
     mensagens = ['quantidade de digitos invalida','cpf invalido','todos os numeros não podem ser iguais','valido']
     retorno = {'valido':False, 'mensagem':mensagens[0]}#
@@ -101,5 +113,5 @@ def valida_cpf_v2(cpf):
 
 #23569741052 validos
 #a3 = verifica_repetido('23569741052')
-a4 = valida_cpf_v2('23569741052')
+a4 = valida_cpf_v2('13188652399')
 print(a4)
