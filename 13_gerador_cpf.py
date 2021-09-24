@@ -43,8 +43,8 @@ def gerador_cpf(estado = 10,  controle = 0):
         digitos += str(holder)
         controle += 1 #incremento para sair o while.
         incremento = 1
-        
-    print(digitos)
+    return digitos
+    
 
     
 

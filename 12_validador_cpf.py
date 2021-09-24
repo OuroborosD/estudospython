@@ -113,5 +113,5 @@ def valida_cpf_v2(cpf):
 
 #23569741052 validos
 #a3 = verifica_repetido('23569741052')
-a4 = valida_cpf_v2('13188652399')
+a4 = valida_cpf_v2('16951785805')
 print(a4)
